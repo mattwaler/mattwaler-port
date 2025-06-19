@@ -30,7 +30,7 @@
 }
 
 pre.astro-code {
-  @apply bg-transparent;
+  @apply !bg-transparent;
 }
 
 pre.astro-code code {
