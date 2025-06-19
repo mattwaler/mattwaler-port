@@ -1,0 +1,85 @@
+@import 'tailwindcss';
+@plugin "tailwindcss-debug-screens";
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+@utility button {
+  @apply rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-950 shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2;
+}
+
+@utility section-margin {
+  @apply my-16 sm:my-24 lg:my-32;
+}
+
+@layer base {
+  html {
+    @apply antialiased font-normal scroll-smooth bg-gray-950 text-white;
+  }
+
+  body {
+    @apply size-full;
+    touch-action: manipulation;
+  }
+
+  button {
+    @apply hover:cursor-pointer;
+  }
+}
+
+pre.astro-code {
+  @apply bg-transparent;
+}
+
+pre.astro-code code {
+  @apply block;
+  counter-reset: step;
+  counter-increment: step 0;
+}
+
+pre.astro-code code .line {
+  @apply relative;
+}
+
+pre.astro-code code .line::before {
+  content: counter(step);
+  counter-increment: step;
+  @apply text-gray-600 pr-2;
+}
+
+/* Hide the radio buttons */
+.tab-radio {
+  @apply absolute opacity-0 pointer-events-none;
+}
+
+/* Default state - hide all tab content */
+.tab-content {
+  @apply hidden opacity-0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Default state for tab links */
+.tab-link {
+  @apply border-b-2 border-transparent bg-transparent;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* When tab1 is checked, show content1 and highlight its tab */
+#tab1:checked ~ * #content1 {
+  @apply block opacity-100;
+}
+
+#tab1:checked ~ .flex .tab-link:nth-child(1) {
+  @apply border-b-2 border-b-red-500;
+}
+
+/* When tab2 is checked, show content2 and highlight its tab */
+#tab2:checked ~ * #content2 {
+  @apply block opacity-100;
+}
+
+#tab2:checked ~ .flex .tab-link:nth-child(2) {
+  @apply border-b-2 border-b-red-500;
+}
