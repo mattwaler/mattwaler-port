@@ -134,7 +134,12 @@ const dublinCore = {
     <meta name="keywords" content={seoKeywords} />
   </head>
 
-  <body class="min-h-[100vh] flex items-center justify-center p-4">
+  <body
+    class:list={[
+      "min-h-[100vh] flex items-center justify-center p-4",
+      { 'debug-screens': import.meta.env.DEV }
+    ]}
+  >
     <slot />
   </body>
 </html>
