@@ -1,31 +1,18 @@
 ---
 import '../styles/global.css'
 
-// Base domain URL without trailing slash
+import Profile from '../components/Profile.astro'
+import Contact from '../components/Contact.astro'
+import ContentLink from '../components/ContentLink.astro'
+import { ClientRouter } from "astro:transitions"
+
 const domainBaseURL = 'https://devidev.io'
 const ogImageUrl = 'https://devidev.io/img/meta.png'
-
-// Website publisher & region
 const authorPublisher = 'Dejan Vi.'
-const geoRegion = 'DE-BY'
-
-// SEO title, description and keywords
+const geoRegion = 'US-OH'
 const seoTitle = 'devi|dev|io | Dejan Vi. | Full Stack Developer'
 const seoDescription =
   'Passionate web developer focused on creating clean, efficient, and scalable web applications with a modern tech stack. Specialized in Angular, TypeScript, and Supabase.'
-const seoKeywords =
-  'Full Stack Developer, Dejan Vi, Munich, Papersend, Qivi, TECHPOINT, Angular, Typescript, Supabase'
-
-// Twitter card data
-const twitter = {
-  title: seoTitle,
-  description: seoDescription,
-  image: ogImageUrl,
-  site: '@devidev_io',
-  creator: '@devidev_io',
-}
-
-// Open graph data
 const openGraph = {
   title: seoTitle,
   description: seoDescription,
@@ -35,69 +22,34 @@ const openGraph = {
   locale: 'en_US',
   siteName: 'devi|dev|io',
 }
-
-// Dublin core
-const dublinCore = {
-  title: 'devi|dev|io',
-  creator: authorPublisher,
-  publisher: authorPublisher,
-  rights: authorPublisher,
-  description: seoDescription,
-  language: 'en',
-  type: 'Software',
-  format: 'text/html',
-}
 ---
 
 <!doctype html>
 <html lang="en" class="bg-black text-gray-100 font-mono">
   <head>
-    <!-- Crawler & Robots -->
     <meta
       name="robots"
       content="index, follow, noodp, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     />
     <meta name="revisit-after" content="7 days" />
     <meta name="revisit" content="after 7 days" />
-
-    <!-- Start: Meta-Tags -->
     <meta charset="UTF-8" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Pragma" content="cache" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- End: Meta-Tags -->
-
-    <!-- Start: DNS prefetch and preconnect -->
-    <!-- <link rel="preload" as="image" href="/img/logo.svg" /> -->
-    <link rel="preconnect" href="https://brain.papersend.io" />
-    <!-- End: DNS prefetch and preconnect -->
-
-    <!-- Start: Theming and Favicons -->
     <link
       rel="icon"
       type="image/svg+xml"
       crossorigin="anonymous"
       href="/img/logo.svg"
     />
-    <!-- <link rel="alternate icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
-        <link rel="alternate icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
-        <link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico">
-        <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
-        <link rel="manifest" href="/img/favicon/site.webmanifest"> -->
-    <!-- End: Theming and Favicons -->
-
-    <!-- Start: Misc meta tags -->
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="canonical" href={Astro.url} />
-
     <meta name="geo.region" content={geoRegion} />
     <meta name="author" content={authorPublisher} />
     <meta name="publisher" content={authorPublisher} />
     <meta name="copyright" content={authorPublisher} />
-    <!-- End: Misc meta tags -->
-
-    <!-- Start: Facebook open graph -->
     <meta property="og:title" content={openGraph.title} />
     <meta property="og:description" content={openGraph.description} />
     <meta property="og:url" content={openGraph.url} />
@@ -105,41 +57,49 @@ const dublinCore = {
     <meta property="og:image" content={openGraph.image} />
     <meta property="og:locale" content={openGraph.locale} />
     <meta property="og:site_name" content={openGraph.siteName} />
-    <!-- End: Facebook open graph -->
-
-    <!-- Start: Twitter card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={twitter.title} />
-    <meta name="twitter:description" content={twitter.description} />
-    <meta name="twitter:image" content={twitter.image} />
-    <meta name="twitter:site" content={twitter.site} />
-    <meta name="twitter:creator" content={twitter.creator} />
-    <!-- End: Twitter card -->
-
-    <!-- Start: Dublin Core (DC) -->
-    <meta name="DC.Title" content={dublinCore.title} />
-    <meta name="DC.Creator" content={dublinCore.creator} />
-    <meta name="DC.Rights" content={dublinCore.rights} />
-    <meta name="DC.Publisher" content={dublinCore.publisher} />
-    <meta name="DC.Description" content={dublinCore.description} />
-    <meta name="DC.Language" content={dublinCore.language} />
-    <meta name="DC.Type" content={dublinCore.type} />
-    <meta name="DC.Format" content={dublinCore.format} />
-    <!-- End: Dublin Core (DC) -->
-
-    <!-- Title & Description -->
     <title>{seoTitle}</title>
     <meta name="description" content={seoDescription} />
     <meta name="abstract" content={seoDescription} />
-    <meta name="keywords" content={seoKeywords} />
+    <ClientRouter />
   </head>
-
   <body
     class:list={[
-      "min-h-[100vh] flex items-center justify-center p-4",
-      { 'debug-screens': import.meta.env.DEV }
+      'min-h-[100vh] flex items-center justify-center p-4',
+      { 'debug-screens': import.meta.env.DEV },
     ]}
   >
-    <slot />
+    <main
+      class="flex flex-col md:flex-row w-full max-w-full md:max-w-7xl border border-gray-600 rounded-2xl overflow-hidden shadow-2xl relative bg-black mb-12 md:mb-4"
+    >
+      <div
+        class="p-8 md:p-6 flex flex-col justify-between w-full md:w-2/5 border-b md:border-b-0 md:border-r border-gray-600"
+      >
+        <Profile />
+        <Contact />
+      </div>
+      <div class="w-full md:w-4/5 p-0">
+        <div class="min-h-full h-[90vh] flex flex-col overflow-y-scroll">
+          <div class="tab-controls">
+            <input
+              type="radio"
+              id="tab1"
+              name="tabs"
+              class="tab-radio"
+              checked
+            />
+            <input type="radio" id="tab2" name="tabs" class="tab-radio" />
+            <div
+              class="flex bg-black border-b border-gray-600 sticky top-0 z-10"
+            >
+              <ContentLink href="/" name="home.html" />
+              <ContentLink href="/projects" name="projects.html" />
+            </div>
+            <div class="p-6 flex-grow overflow-y-auto bg-black">
+              <slot />
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

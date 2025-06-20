@@ -3,11 +3,11 @@ import { Picture } from 'astro:assets'
 import ProfilePicture from '../assets/profile.png'
 
 const profile = {
-  name: 'Dejan Vi.',
-  title: 'Full Stack Developer',
-  location: 'Munich, Germany',
+  name: 'Matt Waler',
+  title: 'Web Developer',
+  location: 'Ohio, USA',
   description:
-    'Passionate web developer focused on creating clean, efficient, and scalable web applications with a modern tech stack. Specialized in Angular, TypeScript, and Supabase, delivering responsive and intuitive user interfaces. Even my name includes "dev".',
+    'I am a JavaScript-focused developer from Ohio. I am a firm believer that simple, pragmatic, and readable code is far superior to complex abstractions.',
 }
 ---
 
@@ -24,18 +24,15 @@ const profile = {
       title={profile.name}
       class="w-24 h-24 rounded-xl object-cover border-2 border-primary mx-auto sm:mx-0"
     />
-
     <div>
       <h1
         class="text-2xl font-extrabold mb-1 inline-block relative text-text-primary"
       >
         {profile.name}
       </h1>
-
       <p class="text-sm mb-2 text-primary">
         {profile.title}
       </p>
-
       <p
         class="flex items-center justify-center sm:justify-start text-sm text-gray-400"
       >
@@ -57,7 +54,6 @@ const profile = {
       </p>
     </div>
   </div>
-
   <p class="text-sm leading-relaxed mt-4 text-gray-400">
     {profile.description}
   </p>

@@ -1,23 +1,28 @@
 ---
 interface Props {
-  contentId: string
-  contentName: string
+  name: string,
+  href: string,
 }
 
-const { contentId, contentName } = Astro.props as Props
+const { name, href } = Astro.props as Props
+
+const pathname = new URL(Astro.request.url).pathname
+console.log(pathname)
 ---
 
-<label
-  for={contentId}
-  class={[
+<a
+  href={href}
+  class:list={[
     'tab-link',
     'flex items-center gap-2 py-2 px-4 text-xs cursor-pointer',
     'bg-black',
     'text-gray-100',
     'hover:text-primary',
+    'border-b-2 border-b-transparent',
     '!border-r',
     '!border-r-gray-600',
-  ].join(' ')}
+    { '!border-b-red-500': pathname == href }
+  ]}
 >
   <svg
     fill="none"
@@ -33,5 +38,5 @@ const { contentId, contentName } = Astro.props as Props
       d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
     ></path><polyline points="14 2 14 8 20 8"></polyline></svg
   >
-  <h2>{contentName}</h2>
-</label>
+  <h2>{name}</h2>
+</a>
