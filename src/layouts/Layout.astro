@@ -7,6 +7,13 @@ import ContentLink from '../components/ContentLink.astro'
 import { ClientRouter } from "astro:transitions"
 
 const { meta } = Astro.props
+
+const links = [
+  { url: '/', name: 'home.html' },
+  { url: '/contact/', name: 'contact.html' },
+  { url: '/apps/', name: 'apps.html' },
+  { url: '/websites/', name: 'websites.html' },
+]
 ---
 
 <!doctype html>
@@ -54,33 +61,33 @@ const { meta } = Astro.props
     ]}
   >
     <main
-      class="flex flex-col md:flex-row w-full max-w-full md:max-w-7xl border border-gray-600 rounded-2xl overflow-hidden shadow-2xl relative bg-black mb-12 md:mb-4"
+      class="w-full max-w-full md:max-w-7xl border border-gray-600 rounded-2xl overflow-hidden shadow-2xl relative bg-black mb-12 md:mb-4"
     >
-      <div
-        class="p-8 md:p-6 flex flex-col justify-between w-full md:w-2/5 border-b md:border-b-0 md:border-r border-gray-600"
-      >
-        <Profile />
-        <Contact />
+      <div class="w-full h-10 px-8 md:px-6 flex items-center justify-start gap-2 border-b border-gray-600">
+        <div class="rounded-full size-3 bg-red-500"></div>
+        <div class="rounded-full size-3 bg-yellow-500"></div>
+        <div class="rounded-full size-3 bg-green-500"></div>
       </div>
-      <div class="w-full md:w-4/5 p-0">
-        <div class="min-h-full h-[90vh] flex flex-col overflow-y-scroll">
-          <div class="tab-controls">
-            <input
-              type="radio"
-              id="tab1"
-              name="tabs"
-              class="tab-radio"
-              checked
-            />
-            <input type="radio" id="tab2" name="tabs" class="tab-radio" />
-            <div
-              class="flex bg-black border-b border-gray-600 sticky top-0 z-10"
-            >
-              <ContentLink href="/" name="home.html" />
-              <ContentLink href="/projects" name="projects.html" />
-            </div>
-            <div class="p-6 flex-grow overflow-y-auto bg-black">
-              <slot />
+      <div class="flex flex-col md:flex-row">
+        <div
+          class="p-8 md:p-6 flex flex-col justify-between w-full md:w-2/5 border-b md:border-b-0 md:border-r border-gray-600"
+        >
+          <Profile />
+          <Contact />
+        </div>
+        <div class="w-full md:w-4/5 p-0">
+          <div class="min-h-full h-[90vh] flex flex-col overflow-y-scroll">
+            <div class="tab-controls">
+              <div
+                class="flex bg-black border-b border-gray-600 sticky top-0 z-10"
+              >
+                {links.map(link => (
+                  <ContentLink href={link.url} name={link.name} />
+                ))}
+              </div>
+              <div class="p-6 flex-grow overflow-y-auto bg-black">
+                <slot />
+              </div>
             </div>
           </div>
         </div>

@@ -1,13 +1,13 @@
 ---
 import { Picture } from 'astro:assets'
-import ProfilePicture from '../assets/logo.svg'
+import ProfilePicture from '../assets/headshot.jpg'
 
 const profile = {
   name: 'Matt Waler',
   title: 'Web Developer',
   location: 'Ohio, USA',
   description:
-    'I am a JavaScript-focused developer from Ohio. I am a firm believer that simple, pragmatic, and readable code is far superior to complex abstractions.',
+    ' I care deeply about writing code that’s simple, pragmatic, and easy to read—no unnecessary complexity.',
 }
 ---
 
@@ -18,11 +18,11 @@ const profile = {
     <Picture
       src={ProfilePicture}
       formats={['webp']}
-      width={96}
-      height={96}
+      width={256}
+      height={256}
       alt={'Profile picture ' + profile.name}
       title={profile.name}
-      class="w-24 h-24 p-3 rounded-xl object-cover border-2 border-primary mx-auto sm:mx-0"
+      class="w-24 h-24 rounded-xl object-cover border-3 border-primary mx-auto sm:mx-0"
     />
     <div>
       <h1
@@ -54,7 +54,12 @@ const profile = {
       </p>
     </div>
   </div>
-  <p class="text-sm leading-relaxed mt-4 text-gray-400">
-    {profile.description}
-  </p>
+  <div>
+    <p class="text-sm leading-relaxed mt-4 text-gray-400">
+      Hi, I’m Matt Waler, a developer and software engineer based in Ohio. I focus on building clean, maintainable web and mobile apps using tools like React, Next.js, React Native, TailwindCSS, and Swift.
+    </p>
+    <p class="text-sm leading-relaxed mt-4 text-gray-400">
+      I care deeply about writing code that’s simple, pragmatic, and easy to read, with no unnecessary complexity.
+    </p>
+  </div>
 </div>

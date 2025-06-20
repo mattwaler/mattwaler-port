@@ -1,5 +1,11 @@
 @import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
 @plugin "tailwindcss-debug-screens";
+
+@theme {
+  --color-primary: #f78166;
+}
 
 @utility container {
   margin-inline: auto;
@@ -28,29 +34,25 @@
   button {
     @apply hover:cursor-pointer;
   }
+
+  pre.astro-code {
+    @apply !bg-transparent;
+  }
+
+  pre.astro-code code {
+    @apply block;
+    counter-reset: step;
+    counter-increment: step 0;
+  }
+
+  pre.astro-code code .line {
+    @apply relative;
+  }
+
+  pre.astro-code code .line::before {
+    content: counter(step);
+    counter-increment: step;
+    @apply text-gray-600 pr-2;
+  }
 }
 
-pre.astro-code {
-  @apply !bg-transparent;
-}
-
-pre.astro-code code {
-  @apply block;
-  counter-reset: step;
-  counter-increment: step 0;
-}
-
-pre.astro-code code .line {
-  @apply relative;
-}
-
-pre.astro-code code .line::before {
-  content: counter(step);
-  counter-increment: step;
-  @apply text-gray-600 pr-2;
-}
-
-/* Hide the radio buttons */
-.tab-radio {
-  @apply absolute opacity-0 pointer-events-none;
-}
