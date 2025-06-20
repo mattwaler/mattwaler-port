@@ -6,22 +6,7 @@ import Contact from '../components/Contact.astro'
 import ContentLink from '../components/ContentLink.astro'
 import { ClientRouter } from "astro:transitions"
 
-const domainBaseURL = 'https://devidev.io'
-const ogImageUrl = 'https://devidev.io/img/meta.png'
-const authorPublisher = 'Dejan Vi.'
-const geoRegion = 'US-OH'
-const seoTitle = 'devi|dev|io | Dejan Vi. | Full Stack Developer'
-const seoDescription =
-  'Passionate web developer focused on creating clean, efficient, and scalable web applications with a modern tech stack. Specialized in Angular, TypeScript, and Supabase.'
-const openGraph = {
-  title: seoTitle,
-  description: seoDescription,
-  url: domainBaseURL,
-  image: ogImageUrl,
-  type: 'website',
-  locale: 'en_US',
-  siteName: 'devi|dev|io',
-}
+const { meta } = Astro.props
 ---
 
 <!doctype html>
@@ -46,20 +31,20 @@ const openGraph = {
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="canonical" href={Astro.url} />
-    <meta name="geo.region" content={geoRegion} />
-    <meta name="author" content={authorPublisher} />
-    <meta name="publisher" content={authorPublisher} />
-    <meta name="copyright" content={authorPublisher} />
-    <meta property="og:title" content={openGraph.title} />
-    <meta property="og:description" content={openGraph.description} />
-    <meta property="og:url" content={openGraph.url} />
-    <meta property="og:type" content={openGraph.type} />
-    <meta property="og:image" content={openGraph.image} />
-    <meta property="og:locale" content={openGraph.locale} />
-    <meta property="og:site_name" content={openGraph.siteName} />
-    <title>{seoTitle}</title>
-    <meta name="description" content={seoDescription} />
-    <meta name="abstract" content={seoDescription} />
+    <meta name="geo.region" content="US-OH" />
+    <meta name="author" content="Matt Waler" />
+    <meta name="publisher" content="Matt Waler" />
+    <meta name="copyright" content="Matt Waler" />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:url" content="https://mattwaler.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={meta.ogImage ?? 'https://mattwaler.com/img/meta.png'} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="mattwaler.com" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <meta name="abstract" content={meta.description} />
     <ClientRouter />
   </head>
   <body
